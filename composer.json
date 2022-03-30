@@ -1,0 +1,41 @@
+{
+    "name": "helaplus/laravelmifos",
+    "description": ":package_description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Author Name",
+            "email": "author@email.com",
+            "homepage": "http://author.com"
+        }
+    ],
+    "homepage": "https://github.com/helaplus/laravelmifos",
+    "keywords": ["Laravel", "Laravelmifos"],
+    "require": {
+        "illuminate/support": "~9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Helaplus\\Laravelmifos\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Helaplus\\Laravelmifos\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Helaplus\\Laravelmifos\\LaravelmifosServiceProvider"
+            ],
+            "aliases": {
+                "Laravelmifos": "Helaplus\\Laravelmifos\\Facades\\Laravelmifos"
+            }
+        }
+    }
+}
