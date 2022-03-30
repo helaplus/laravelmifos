@@ -2,6 +2,7 @@
 
 namespace Helaplus\Laravelmifos;
 
+use Helaplus\Laravelmifos\Providers\EventServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelmifosServiceProvider extends ServiceProvider
@@ -37,6 +38,7 @@ class LaravelmifosServiceProvider extends ServiceProvider
         $this->app->singleton('laravelmifos', function ($app) {
             return new Laravelmifos;
         });
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**
