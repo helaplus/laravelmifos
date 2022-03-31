@@ -1,5 +1,5 @@
 <?php
-namespace Helaplus\Laravelmifos\Listeners;
+namespace App\Listeners;
 
 use Helaplus\Ussd\Events\UssdEvent;
 use Illuminate\Support\Facades\Http;
