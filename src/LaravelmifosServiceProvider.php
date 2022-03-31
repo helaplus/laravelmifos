@@ -2,7 +2,7 @@
 
 namespace Helaplus\Laravelmifos;
 
-use Helaplus\Laravelmifos\Providers\EventServiceProvider;
+use Helaplus\Laravelmifos\Providers\UssdEventServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelmifosServiceProvider extends ServiceProvider
@@ -38,7 +38,7 @@ class LaravelmifosServiceProvider extends ServiceProvider
         $this->app->singleton('laravelmifos', function ($app) {
             return new Laravelmifos;
         });
-        $this->app->register(EventServiceProvider::class);
+        $this->app->register(UssdEventServiceProvider::class);
     }
 
     /**
@@ -66,6 +66,10 @@ class LaravelmifosServiceProvider extends ServiceProvider
         // Publishing the listeners.
         $this->publishes([
             __DIR__.'/Listeners/UssdEventListener.php' => base_path('app/Listeners/UssdEventListener.php'),
+        ], 'UssdEventListener');
+        //Publishing the providers
+        $this->publishes([
+            __DIR__.'/Providers/UssdEventServiceProvider.php' => base_path('app/Providers/UssdEventServiceProvider.php'),
         ], 'UssdEventListener');
 
         // Publishing the views.
