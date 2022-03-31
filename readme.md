@@ -16,7 +16,13 @@ $ composer require helaplus/laravelmifos
 ```
 
 ## Usage
-
+Add the following configs to .env
+``` bash
+MIFOS_URL="{YOUR_MIFOS_URL}"
+MIFOS_TENANT="{YOUR_MIFOS_TENANT}"
+MIFOS_USERNAME="{YOUR_MIFOS_USERNAME}"
+MIFOS_PASSWORD="{YOUR_MIFOS_PASSWORD}"
+```
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
