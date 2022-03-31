@@ -10,7 +10,10 @@ class MifosHelperController extends Controller {
 
 
     public static function MifosPostTransaction($endpoint,$data,$options=""){
-        $url = config('laravelmifos.mifos_url') . "fineract-provider/api/v1/".$endpoint."?".$options."&tenantIdentifier=" .config('laravelmifos.mifos_tenant');
+        if(strlen($options)>0){ 
+            $options = "&".$options;
+        }
+        $url = config('laravelmifos.mifos_url') . "fineract-provider/api/v1/".$endpoint."?tenantIdentifier=" .config('laravelmifos.mifos_tenant').$options;
         return Http::withHeaders(
             [
                 'Content-Type' => 'application/json',
