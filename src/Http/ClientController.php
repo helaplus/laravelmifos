@@ -1,8 +1,8 @@
 <?php
 
-namespace Helaplus\Laravelmifos\Http\Controllers;
+namespace Helaplus\Laravelmifos\Http;
 
-use Helaplus\Laravelmifos\Http\Controllers\MifosHelperController;
+use Helaplus\Laravelmifos\Http\MifosHelperController;
 
 class ClientController extends Controller {
 

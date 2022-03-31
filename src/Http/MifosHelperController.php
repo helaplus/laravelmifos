@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Helaplus\Laravelmifos\Http\Controllers;
+namespace Helaplus\Laravelmifos\Http;
 
 
 use Illuminate\Support\Facades\Http;
@@ -17,7 +17,7 @@ class MifosHelperController extends Controller {
                 'Content-Type' => 'application/json',
                 'Content-Length' => strlen($data)
             ]
-        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->post($url,$data); 
+        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->post($url,$data);
 
 
     }
