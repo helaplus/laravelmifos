@@ -4,9 +4,9 @@ namespace Helaplus\Laravelmifos\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Helaplus\Ussd\Events\UssdEvent;
-use Helaplus\Laravelmifos\Listeners\UssdEventListener;
+use App\Listeners\UssdEventListener;
 
-class EventServiceProvider extends ServiceProvider
+class UssdEventServiceProvider extends ServiceProvider
 {
     protected $listen = [
         UssdEvent::class => [
@@ -20,7 +20,7 @@ class EventServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+    { 
         parent::boot();
     }
 }
