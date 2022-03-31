@@ -63,6 +63,11 @@ class LaravelmifosServiceProvider extends ServiceProvider
             __DIR__.'/../config/laravelmifos.php' => config_path('laravelmifos.php'),
         ], 'laravelmifos.config');
 
+        // Publishing the listeners.
+        $this->publishes([
+            __DIR__.'/Listeners/UssdEventListener.php' => base_path('app/Listeners/UssdEventListener.php'),
+        ], 'UssdEventListener');
+
         // Publishing the views.
         /*$this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/helaplus'),
