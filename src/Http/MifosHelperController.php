@@ -48,7 +48,7 @@ class MifosHelperController extends Controller {
     }
 
 
-    public static function MifosGetTransaction($endpoint,$data,$options=""){
+    public static function MifosGetTransaction($endpoint,$options=""){
         if(strlen($options)>0){
             $options = "&".$options;
         }
