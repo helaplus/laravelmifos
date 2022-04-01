@@ -46,7 +46,7 @@ class MifosHelperController extends Controller {
 //            ]
 //        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->post($url,$data);
     }
-    public static function MifosGetTransaction($endpoint,$options=""){
+    public static function MifosGetTransaction($endpoint,$options=""){ 
         if(strlen($options)>0){
             $options = "&".$options;
         }
@@ -58,7 +58,7 @@ class MifosHelperController extends Controller {
             ]
         )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->get($url);
 
-       return $response->json();
+       return $response->body();
     }
 
 }
