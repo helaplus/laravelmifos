@@ -46,6 +46,22 @@ class MifosHelperController extends Controller {
 //            ]
 //        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->post($url,$data);
     }
+    public static function MifosGetTransaction($endpoint,$data,$options=""){
+        if(strlen($options)>0){
+            $options = "&".$options;
+        }
+        $url = config('laravelmifos.mifos_url') . "fineract-provider/api/v1/".$endpoint."?tenantIdentifier=" .config('laravelmifos.mifos_tenant').$options;
+
+
+                $response = Http::withHeaders(
+            [
+                'Content-Type' => 'application/json',
+                'Content-Length' => strlen($data)
+            ]
+        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->get($url,$data);
+
+                return $response->json();
+    }
 
 }
 
