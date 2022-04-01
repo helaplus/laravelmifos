@@ -18,8 +18,8 @@ class ClientController extends Controller {
         $endpoint = 'search';
         $options = "exactMatch=false&query=" . $phone . "&resource=clients";
         // Get client
-        $post_data = [];
-        $client = MifosHelperController::MifosGetTransaction($endpoint, $post_data, $options);
+        $post_data = "";
+        $client = MifosHelperController::MifosGetTransaction($endpoint,$options);
         if(isset($client[0])){
             return  self::getClientByClientId($client[0]->entityId);
         }else{
@@ -27,7 +27,7 @@ class ClientController extends Controller {
             $endpoint = 'search';
             $options = "exactMatch=false&query=" . $no . "&resource=clients";
             // Get client
-            $client = self::MifosGetTransaction($endpoint, $post_data = '',$options);
+            $client = self::MifosGetTransaction($endpoint, $options);
             if(isset($client[0])){
                 return  self::getClientByClientId($client[0]->entityId);
             }
@@ -41,7 +41,7 @@ class ClientController extends Controller {
         $endpoint = 'search';
         $options = "exactMatch=true&query=" . $externalid . "&resource=clients,clientIdentifiers";
         // Get client
-        $client = MifosHelperController::MifosGetTransaction($endpoint, $post_data = [],$options);
+        $client = MifosHelperController::MifosGetTransaction($endpoint, $options); 
         return $client;
     }
 
