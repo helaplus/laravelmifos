@@ -46,20 +46,55 @@ class MifosHelperController extends Controller {
 //            ]
 //        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->post($url,$data);
     }
-    public static function MifosGetTransaction($endpoint,$options=""){ 
+
+
+    public static function MifosGetTransaction($endpoint,$data,$options=""){
         if(strlen($options)>0){
             $options = "&".$options;
         }
         $url = config('laravelmifos.mifos_url') . "fineract-provider/api/v1/".$endpoint."?tenantIdentifier=" .config('laravelmifos.mifos_tenant').$options;
 
-                $response = Http::withHeaders(
-            [
-                'Content-Type' => 'application/json',
-            ]
-        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->get($url);
+        $ch = curl_init();
+        $data = "";
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        //curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($data))
+        );
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERPWD, config('laravelmifos.mifos_username').':'.config('laravelmifos.mifos_password'));
 
-       return $response->body();
+//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        $data = curl_exec($ch);
+        if ($errno = curl_errno($ch)) {
+            $error_message = curl_strerror($errno);
+            echo "cURL error ({$errno}):\n {$error_message}";
+        }
+        $dt = ['slug' => 'mifos_get_response', 'content' => $data];
+        //log response
+        curl_close($ch); 
+        $response = json_decode($data);
+        return $response;
     }
+//    public static function MifosGetTransaction($endpoint,$options=""){
+//        if(strlen($options)>0){
+//            $options = "&".$options;
+//        }
+//        $url = config('laravelmifos.mifos_url') . "fineract-provider/api/v1/".$endpoint."?tenantIdentifier=" .config('laravelmifos.mifos_tenant').$options;
+//
+//                $response = Http::withHeaders(
+//            [
+//                'Content-Type' => 'application/json',
+//            ]
+//        )->withBasicAuth(config('laravelmifos.mifos_username'),config('laravelmifos.mifos_password'))->get($url);
+//
+//       return $response->body();
+//    }
 
 }
 
