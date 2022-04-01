@@ -17,9 +17,9 @@ class ClientController extends Controller {
     public static function getClientByPhone($phone){
 
         $no = substr($phone,-9);
-        $user = FALSE;
+        $client = FALSE;
         $endpoint = 'search';
-        $options = "exactMatch=false&query=" . $no . "&resource=clients,clientIdentifiers";  
+        $options = "exactMatch=false&query=" . $no . "&resource=clients,clientIdentifiers";
         // Get client
         $post_data = "";
         $client = MifosHelperController::MifosGetTransaction($endpoint,$options);
@@ -38,7 +38,7 @@ class ClientController extends Controller {
                 return  self::getClientByClientId($client[0]->entityId);
             }
         }
-        return $user;
+        return $client;
     }
 
     public static function getClientByExternalId($externalid){
