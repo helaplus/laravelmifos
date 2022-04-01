@@ -16,4 +16,16 @@ class LoanController extends Controller {
         $endpoint = "loans";
         return MifosHelperController::MifosPostTransaction($endpoint, $data);
     }
+
+    public static function approveLoan($loan_id,$data){
+        $options = 'command=approve';
+        $endpoint = "loans/".$loan_id;
+        return MifosHelperController::MifosPostTransaction($endpoint, $data,$options);
+    }
+
+    public static function disburseLoan($loan_id,$data){
+        $options = 'command=disburse';
+        $endpoint = "loans/".$loan_id;
+        return MifosHelperController::MifosPostTransaction($endpoint, $data,$options);
+    }
 }
