@@ -6,6 +6,13 @@ namespace Helaplus\Laravelmifos\Http;
 use Helaplus\Laravelmifos\Http\MifosHelperController;
 
 class LoanController extends Controller {
+
+    public static function getLoan($loan_id){
+        $endpoint = "loans/".$loan_id;
+        $options = "associations=all";
+        return MifosHelperController::MifosGetTransaction($endpoint,$options);
+    }
+
     public static function getLoanProduct($product_id){
         $endpoint = "loanproducts/".$product_id;
         $options = "template=true";
