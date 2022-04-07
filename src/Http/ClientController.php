@@ -63,7 +63,7 @@ class ClientController extends Controller {
     {
         $endpoint = "clients" . $client_id . "/accounts";
         $options = "fields=loanAccounts";
-        $loanAccounts = self::MifosGetTransaction($endpoint,$options);
+        $loanAccounts = MifosHelperController::MifosGetTransaction($endpoint,$options);
         if (!empty($loanAccounts->loanAccounts)) {
             $loanAccounts = array_reverse($loanAccounts->loanAccounts);
         } else {
