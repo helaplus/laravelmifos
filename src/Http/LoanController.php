@@ -36,8 +36,9 @@ class LoanController extends Controller {
         return MifosHelperController::MifosPostTransaction($endpoint, $data,$options);
     }
 
-    public static function getLoanBalance($client_id){
-        $loanAccounts = ClientController::getClientLoanAccounts($client_id);
+    public static function getLoanBalance($phone){
+        $client = ClientController::getClientByPhone($phone);
+        $loanAccounts = ClientController::getClientLoanAccounts($client->Id);
         $balance = [];
         $balance['loans'] = [];
         foreach ($loanAccounts as $lA){ 
