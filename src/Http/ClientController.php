@@ -61,8 +61,21 @@ class ClientController extends Controller {
 
     public static function getClientLoanAccounts($client_id)
     {
-        $endpoint = "clients" . $client_id . "/accounts";
+        $endpoint = "clients/" . $client_id . "/accounts";
         $options = "fields=loanAccounts";
+        $loanAccounts = MifosHelperController::MifosGetTransaction($endpoint,$options);
+        if (!empty($loanAccounts->loanAccounts)) {
+            $loanAccounts = array_reverse($loanAccounts->loanAccounts);
+        } else {
+            $loanAccounts = array();
+        }
+        return $loanAccounts;
+    }
+
+    public static function getClientSavingsAccounts($client_id)
+    {
+        $endpoint = "clients" . $client_id . "/accounts";
+        $options = "fields=savingsAccounts";
         $loanAccounts = MifosHelperController::MifosGetTransaction($endpoint,$options);
         if (!empty($loanAccounts->loanAccounts)) {
             $loanAccounts = array_reverse($loanAccounts->loanAccounts);
