@@ -38,14 +38,16 @@ class LoanController extends Controller {
 
     public static function getLoanBalance($phone){
         $client = ClientController::getClientByPhone($phone);
-        $loanAccounts = ClientController::getClientLoanAccounts($client->Id);
+        $loanAccounts = ClientController::getClientLoanAccounts($client->id);
         $balance = [];
         $balance['loans'] = [];
-        foreach ($loanAccounts as $lA){ 
+        $balance['amount'] = 0;
+        foreach ($loanAccounts as $lA){
             if($lA->status->id ==300){
                 $balance['amount'] = $balance['amount']+$lA->loanBalance;
                 array_push($balance['loans'],$lA);
             }
         }
+        return $balance;
     }
 }
