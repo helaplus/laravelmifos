@@ -50,4 +50,10 @@ class LoanController extends Controller {
         }
         return $balance;
     }
+
+    public static function repayLoan($loan_id,$data){
+        $options = 'command=repayment';
+        $endpoint = "loans/".$loan_id.'/transactions';
+        return MifosHelperController::MifosPostTransaction($endpoint, $data,$options);
+    }
 }
