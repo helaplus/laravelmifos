@@ -4,6 +4,7 @@ namespace Helaplus\Laravelmifos\Http;
 
 use Carbon\Carbon;
 use Helaplus\Laravelmifos\Http\MifosHelperController;
+use Helaplus\Sms\Http\Controllers\SmsController;
 use Helaplus\Sms\Http\Controllers\WasilianaSmsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -13,7 +14,7 @@ class MpesaController extends Controller
 
     public function c2bReceiver()
     {
- 
+
     }
 
     public function stkReceiver(Request $request)
@@ -89,7 +90,7 @@ class MpesaController extends Controller
             //full repayment
             $sms = "Congratulations, you have fully repaid your Bloom Agent Finance Loan of Kshs. ".$amount.". You can borrow again and pay every day to improve your credit rating with Asante Finance";
         }
-        return WasilianaSmsController::sendSms($data['phone'],$sms);
+        return SmsController::sendSms($data['phone'],$sms);
     }
 
     public function getStkInputData($request)
