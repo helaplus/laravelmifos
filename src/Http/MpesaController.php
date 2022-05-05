@@ -82,7 +82,7 @@ class MpesaController extends Controller
 
     public function sendRepaymentSms($data,$amount,$type,$balance){
         //partial repayment
-        if($type=1){ 
+        if($type=1){
             $sms = "Congratulations, Kshs ".$amount." has been used to partially pay your Bloom Agent Finance Loan. Outstanding balance is Kshs. ".$balance.". Borrow and pay every day to improve your credit rating with Asante Finance";
         }else{
             //full repayment

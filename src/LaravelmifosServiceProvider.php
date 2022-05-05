@@ -13,7 +13,7 @@ class LaravelmifosServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(): void
-    {
+    { 
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'helaplus');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'helaplus');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
@@ -39,7 +39,6 @@ class LaravelmifosServiceProvider extends ServiceProvider
         $this->app->singleton('laravelmifos', function ($app) {
             return new Laravelmifos;
         });
-        $this->app->register(UssdEventServiceProvider::class);
     }
 
     /**
@@ -64,14 +63,11 @@ class LaravelmifosServiceProvider extends ServiceProvider
             __DIR__.'/../config/laravelmifos.php' => config_path('laravelmifos.php'),
         ], 'laravelmifos.config');
 
-        // Publishing the listeners.
-        $this->publishes([
-            __DIR__.'/Listeners/UssdEventListener.php' => base_path('app/Listeners/UssdEventListener.php'),
-        ], 'UssdEventListener');
+
         //Publishing the providers
         $this->publishes([
-            __DIR__.'/Providers/UssdEventServiceProvider.php' => base_path('app/Providers/UssdEventServiceProvider.php'),
-        ], 'UssdEventListener');
+            __DIR__.'/Providers/LaravelMifosServiceProvider.php' => base_path('app/Providers/LaravelMifosServiceProvider.php'),
+        ], 'LaravelMifosServiceProvider');
 
         // Publishing the views.
         /*$this->publishes([
