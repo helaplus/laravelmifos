@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Helaplus\Laravelmifos\Http\MifosHelperController;
 use Helaplus\Sms\Http\Controllers\SmsController;
 use Helaplus\Sms\Http\Controllers\WasilianaSmsController;
+use Helaplus\Stk\Models\StkLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -19,8 +20,16 @@ class MpesaController extends Controller
 
     public function stkReceiver(Request $request)
     {
+        $request = $request->all(); 
+        $stklog = StkLog::whereCheckoutRequestId($request['Body']['stkCallback']['CheckoutRequestID'])->first();
+        if($stklog->status !=2){
         $data = self::getStkInputData($request);
         $processed = self::processRepayment($data);
+        if($processed){
+            $stklog->status =2;
+            $stklog->save();
+        }
+        }
         return $processed;
     }
 
@@ -95,7 +104,6 @@ class MpesaController extends Controller
 
     public function getStkInputData($request)
     {
-        $request = $request->all();
         $items = $request['Body']['stkCallback']['CallbackMetadata']['Item'];
         $data['phone'] = $items[4]['Value'];
         $data['transaction_id'] = $items[1]['Value'];
