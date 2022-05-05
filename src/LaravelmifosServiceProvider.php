@@ -13,7 +13,7 @@ class LaravelmifosServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(): void
-    { 
+    {
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'helaplus');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'helaplus');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');

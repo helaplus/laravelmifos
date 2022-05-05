@@ -13,14 +13,14 @@ class MpesaController extends Controller
 
     public function c2bReceiver()
     {
-
+ 
     }
 
     public function stkReceiver(Request $request)
     {
         $data = self::getStkInputData($request);
         $processed = self::processRepayment($data);
-
+        return $processed;
     }
 
     public function processRepayment($data){
@@ -66,8 +66,9 @@ class MpesaController extends Controller
                     }else{
                         $type = 1;
                     }
-                    self::sendRepaymentSms($data,$amount,$type,$balance);
-                    $response = TRUE;
+                    $rsp = self::sendRepaymentSms($data,$amount,$type,$balance);
+
+                    $response = $rsp;
                 }
 
             }
