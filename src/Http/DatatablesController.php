@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Http;
 class DatatablesController extends Controller {
 
 
-    public static function create($client_id,$data)
-    {
-        $endpoint = "datatables/".$client_id;
+    public static function create($client_id,$datatable,$data)
+    { 
+        $endpoint = "datatables/".$datatable."/".$client_id;
         $options = "genericResultSet=true"; 
         return MifosHelperController::MifosPostTransaction($endpoint, $data,$options);
     }
