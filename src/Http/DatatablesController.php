@@ -15,4 +15,11 @@ class DatatablesController extends Controller {
         return MifosHelperController::MifosPostTransaction($endpoint, $data,$options);
     }
 
+    public static function get($client_id,$datatable)
+    { 
+        $endpoint = "datatables/".$datatable."/".$client_id;
+        $options = "genericResultSet=true";
+        return MifosHelperController::MifosGetTransaction($endpoint,$options);
+    }
+
 }
